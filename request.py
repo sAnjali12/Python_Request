@@ -62,7 +62,7 @@ courseId = (coursesJsonData["availableCourses"][int(userInput)]["id"])
 courseName=(coursesJsonData["availableCourses"][int(userInput)]["name"])
 print (courseId)
 
-# Calling API for print the exercises of the courses.
+# Calling  API for print the exercises of the courses.
 
 printText("EXERCISES OF COURSES")  
 print (courseName)
@@ -78,4 +78,18 @@ def getExercises(exercisesData):
         print  (str(index)+"."+exercisesData["data"][index]["name"])
         exercisesIdList.append(exercisesData["data"][index]["id"])
     # print exercisesIdList
+        index1 = 0
+        while index1<len(exercisesData["data"][index]["childExercises"]):
+            print ("\t"+str(index1+1)+":"+exercisesData["data"][index]["childExercises"][index1]["name"])
+            sluglist.append(exercisesData["data"][index]["parentExerciseId"][index]["childExercises"][index1]["slug"])
+            
+            index1 += 1
         index = index+1
+    return sluglist
+    # print exercisesIdList
+    
+
+# print (exerciseJsonData)
+        
+slugListName = getExercises(exerciseJsonData)
+print slugListName
