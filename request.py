@@ -67,7 +67,7 @@ print (courseId)
 printText("EXERCISES OF COURSES")  
 print (courseName)
 exerciseUrl = BASE_URL+"/"+str(courseId)+"/exercises"
-exercisData = getData("exercises_"+str(courseId)+".json",exerciseUrl)
+exercisData = getData("exercisesFolder\exercises_"+str(courseId)+".json",exerciseUrl)
 exercisesIdList = []
 sluglist = []
 def getExercises(exercisesData):
@@ -90,10 +90,10 @@ def getExercises(exercisesData):
         
 exercisesId = getExercises(exercisData)
 
-userWant = raw_input("IF YOU WANT TO GO UP SIDE SO ENTER (up)")
+userWant = raw_input("IF YOU WANT TO GO UP SIDE SO ENTER (up) IF YOU WANT NO SO ENTER (no)")
 if userWant == "up":
     print getCourses(coursesJsonData)
-else:
+elif userWant == "no":
 
     #USING 3TH API FOR PRINT PERENTEXERCISE SLUG
 
@@ -103,7 +103,7 @@ else:
     printText("CONTENT OF EXERCISES")
     useExercisesId = exercisData["data"][users]["id"]
     contentUrl = BASE_URL+"/"+str(users)+"/"+"exercise"+"/"+"getBySlug?slug="+str(inputId)
-    contentJsonData = getData("content_"+str(users)+".json",contentUrl)
+    contentJsonData = getData("parentContentFolder\content_"+str(users)+".json",contentUrl)
     content = contentJsonData["content"]
     print "\n YOUR CHOICE ID CONTENT\n"
     print content
@@ -126,9 +126,7 @@ else:
     print child_ID
     cContentURl = BASE_URL+"/"+str(child_ID)+"/"+"exercise"+"/"+"getBySlug?slug="+str(input1Id)
     def childData(child_ID,cContentURl):
-        print cContentURl
-        print child_ID
-        childJson = getData("childContent_"+str(child_ID)+".json",cContentURl)
+        childJson = getData("childContentFolder\childContent_"+str(child_ID)+".json",cContentURl)
         childContent = childJson["content"]
         return childContent
 
@@ -147,12 +145,11 @@ else:
             print input2Id
             nextSlugId = exercisData["data"][users]["childExercises"][user1-1]["id"]
             nextcontentURL = BASE_URL+"/"+str(nextSlugId)+"/"+"exercise"+"/"+"getBySlug?slug="+str(input2Id)
-            # print nextcontentURL
+            print nextcontentURL
+            # print nextSlugId
+            # print childSlug
             nextcontent = childData(nextSlugId,nextcontentURL)
             print nextcontent
-            # print user1
-            # print nextSlugId
-            # user1=user1+1
         elif userNextP == "p":
             users3 = user1-1
             if users3 == 0:
