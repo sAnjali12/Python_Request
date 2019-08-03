@@ -67,7 +67,7 @@ print (courseId)
 printText("EXERCISES OF COURSES")  
 print (courseName)
 exerciseUrl = BASE_URL+"/"+str(courseId)+"/exercises"
-exercisData = getData("exercisesFolder\exercises_"+str(courseId)+".json",exerciseUrl)
+exercisData = getData("exercisesFolder/exercises_"+str(courseId)+".json",exerciseUrl)
 exercisesIdList = []
 sluglist = []
 def getExercises(exercisesData):
@@ -103,7 +103,7 @@ elif userWant == "no":
     printText("CONTENT OF EXERCISES")
     useExercisesId = exercisData["data"][users]["id"]
     contentUrl = BASE_URL+"/"+str(users)+"/"+"exercise"+"/"+"getBySlug?slug="+str(inputId)
-    contentJsonData = getData("parentContentFolder\content_"+str(users)+".json",contentUrl)
+    contentJsonData = getData("parentContentFolder/content_"+str(users)+".json",contentUrl)
     content = contentJsonData["content"]
     print "\n YOUR CHOICE ID CONTENT\n"
     print content
@@ -126,7 +126,7 @@ elif userWant == "no":
     print child_ID
     cContentURl = BASE_URL+"/"+str(child_ID)+"/"+"exercise"+"/"+"getBySlug?slug="+str(input1Id)
     def childData(child_ID,cContentURl):
-        childJson = getData("childContentFolder\childContent_"+str(child_ID)+".json",cContentURl)
+        childJson = getData("childContentFolder/childContent_"+str(child_ID)+".json",cContentURl)
         childContent = childJson["content"]
         return childContent
 
